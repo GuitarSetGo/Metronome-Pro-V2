@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Metronome Pro - Web Audio API Precision Timing">
+    <meta name="author" content="Joshua Gonzalez">
+    <title>Metronome Pro — Guitar Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Metronome Pro</h1>
+    <p>Web Audio API Precision Engine · by Joshua Gonzalez</p>
+</header>
+
+<div class="main-wrapper">
+    <div class="card">
+        <div class="metronome-layout">
+
+            <!-- Pendulum -->
+            <div class="pendulum-container">
+                <div class="pendulum-pivot"></div>
+                <div class="pendulum-arm" id="pendulumArm">
+                    <div class="pendulum-bob"></div>
+                </div>
+            </div>
+
+            <!-- BPM Display -->
+            <div class="bpm-section">
+                <div class="bpm-display" id="bpmDisplay">120</div>
+                <div class="bpm-label">BPM</div>
+                <div class="tempo-name" id="tempoName">Moderato</div>
+            </div>
+
+            <!-- BPM Slider & Buttons -->
+            <div class="bpm-controls">
+                <button class="bpm-btn" onclick="changeBPM(-10)" title="-10">−10</button>
+                <button class="bpm-btn" onclick="changeBPM(-1)" title="-1">−</button>
+                <input type="range" id="bpmSlider" min="30" max="240" value="120"
+                       oninput="setBPMFromSlider(this.value)">
+                <button class="bpm-btn" onclick="changeBPM(1)" title="+1">+</button>
+                <button class="bpm-btn" onclick="changeBPM(10)" title="+10">+10</button>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Beats per bar -->
+            <div class="beats-section">
+                <span class="beats-label">Beats per Bar</span>
+                <div class="beats-row">
+                    <button class="beat-select-btn" onclick="setBeats(2)">2</button>
+                    <button class="beat-select-btn" onclick="setBeats(3)">3</button>
+                    <button class="beat-select-btn active" onclick="setBeats(4)">4</button>
+                    <button class="beat-select-btn" onclick="setBeats(5)">5</button>
+                    <button class="beat-select-btn" onclick="setBeats(6)">6</button>
+                    <button class="beat-select-btn" onclick="setBeats(7)">7</button>
+                    <button class="beat-select-btn" onclick="setBeats(8)">8</button>
+                </div>
+            </div>
+
+            <!-- Beat Visualizer -->
+            <div class="beat-visualizer" id="beatVisualizer"></div>
+
+            <!-- Volume -->
+            <div class="volume-section">
+                <span class="volume-label">Volume</span>
+                <span class="volume-icon">🔈</span>
+                <input type="range" id="volumeSlider" min="0" max="100" value="70"
+                       oninput="setVolume(this.value)">
+                <span class="volume-icon">🔊</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Start / Tap Tempo -->
+            <div class="metro-btn-row">
+                <button class="btn-start" id="startStopBtn" onclick="toggleMetronome()">▶ START</button>
+                <button class="btn-tap" onclick="tapTempo()">TAP TEMPO</button>
+            </div>
+
+            <!-- Keyboard shortcuts -->
+            <div class="shortcuts-hint">
+                <h4>⌨ Keyboard Shortcuts</h4>
+                <div class="shortcuts-grid">
+                    <div class="shortcut-item"><span class="key-badge">SPACE</span> Start / Stop</div>
+                    <div class="shortcut-item"><span class="key-badge">T</span> Tap Tempo</div>
+                    <div class="shortcut-item"><span class="key-badge">↑ / ↓</span> BPM ±1</div>
+                    <div class="shortcut-item"><span class="key-badge">← / →</span> BPM ±10</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>
+        Developed by <strong>Joshua Gonzalez</strong> &nbsp;|&nbsp;
+        <a href="https://github.com/GuitarSetGo" target="_blank">GitHub</a> &nbsp;|&nbsp;
+        <a href="https://www.linkedin.com/in/josh4dev" target="_blank">LinkedIn</a>
+    </p>
+    <p style="margin-top:4px;">© 2025 — Metronome Pro v2.0</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- Vinculamos el script externo al final del body -->
+<script src="script.js"></script>
+</body>
+</html>
